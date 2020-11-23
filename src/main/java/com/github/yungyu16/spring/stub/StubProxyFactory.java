@@ -13,14 +13,14 @@ import org.springframework.util.Assert;
  * CreatedDate: 2020/9/25
  * Author: songjialin
  */
-public abstract class StubFactory<A extends Annotate, T> implements FactoryBean<T>, ApplicationContextAware {
+public abstract class StubProxyFactory<A extends Annotate, T> implements FactoryBean<T>, ApplicationContextAware {
     protected Logger log = LoggerFactory.getLogger(getClass());
 
     private ApplicationContext applicationContext;
     private Class<T> stubType;
     private T annotation;
 
-    public StubFactory(Class<T> stubType, AnnotationMetadata metadata) {
+    public StubProxyFactory(Class<T> stubType, AnnotationMetadata metadata) {
         Assert.notNull(stubType, "stubType");
         this.stubType = stubType;
     }

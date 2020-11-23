@@ -12,7 +12,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface SpringStub {
-    Class<InvocationDispatcher> dispatcherClass() default InvocationDispatcher.class;
+    Class<InvocationHandler> dispatcherClass() default InvocationHandler.class;
 
     String dispatcherBeanId() default "";
 
