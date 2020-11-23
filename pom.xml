@@ -6,6 +6,7 @@
     <groupId>com.github.yungyu16.spring</groupId>
     <artifactId>spring-boot-starter-stub</artifactId>
     <version>1.0.0</version>
+
     <name>spring-boot-starter-stub</name>
 
     <properties>
