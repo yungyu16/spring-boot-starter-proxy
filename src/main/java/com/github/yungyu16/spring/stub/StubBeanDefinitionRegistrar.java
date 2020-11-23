@@ -1,4 +1,4 @@
-package com.github.yungyu16.spring.stub.stub;
+package com.github.yungyu16.spring.stub;
 
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.context.annotation.ImportBeanDefinitionRegistrar;

@@ -1,4 +1,4 @@
-package com.github.yungyu16.spring.stub.stub;
+package com.github.yungyu16.spring.stub;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
