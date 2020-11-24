@@ -15,6 +15,12 @@ public abstract class AbstractInvocationDispatcher<T extends Annotation> {
         return (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
     }
 
-    public abstract Object invoke(Object proxy, Method method, Object[] args, T annotation) throws Throwable;
+    public Object invoke(Object proxy, Method method, Object[] args, T annotation) throws Throwable {
+        return invoke(proxy, method, args);
+    }
+
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        throw new UnsupportedOperationException();
+    }
 }
 
