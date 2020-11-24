@@ -1,0 +1,4 @@
+logging:
+  level:
+    com.github.yungyu16.spring.stub: debug
+
