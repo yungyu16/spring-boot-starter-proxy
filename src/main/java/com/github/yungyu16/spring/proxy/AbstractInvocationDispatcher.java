@@ -11,7 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 
 /**
- * 多个Proxy实例共享的单例 需要自行保证状态的线程安全
+ * 自行保证状态的线程安全
  * CreatedDate: 2020/11/24
  * Author: songjialin
  */
