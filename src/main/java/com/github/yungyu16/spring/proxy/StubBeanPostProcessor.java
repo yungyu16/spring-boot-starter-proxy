@@ -28,7 +28,7 @@ public class StubBeanPostProcessor extends InstantiationAwareBeanPostProcessorAd
     @Override
     @SuppressWarnings("all")
     public Object postProcessBeforeInstantiation(Class<?> type, String name) throws BeansException {
-        com.github.yungyu16.spring.proxy.annotation.ProxyStub proxyStub = AnnotationUtils.getAnnotation(type, com.github.yungyu16.spring.proxy.annotation.ProxyStub.class);
+        ProxyStub proxyStub = AnnotationUtils.getAnnotation(type, ProxyStub.class);
         if (proxyStub == null) {
             return null;
         }
