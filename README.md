@@ -3,7 +3,26 @@
 <p align="center">
     <br/>
     <br/>
-    <b>将一个不可实例化的Interface动态代理后注册到Spring容器用于IOC</b>
+    <b>将不可实例化的Interface动态代理后注册到Spring容器用于IOC</b>
     <br/>
     <br/>
 </p>
+
+在业务开发中整合中间件或三方依赖时，常借助Client/SDK进行命令式过程式的调用,相关代码散落各处,既不够OOP也不方便追溯和维护。本项目通过对Interface进行便捷透明的代理并注册到Spring容器，方便业务中利用Interface作为DSL封装各类简洁易用易维护的本地存根。
+
+## 要求
+- Spring-boot 2.x
+> 本项目依赖 `Spring-Boot 2.0.8` Core API开发测试，且没有传递Spring-Boot依赖，理论上兼容所有Spring-Boot版本。
+- Java8
+
+## 集成
+已发布到中央仓库，依赖坐标如下：
+```xml
+<plugin>
+    <groupId>com.github.yungyu16.spring</groupId>
+    <artifactId>spring-boot-starter-proxy</artifactId>
+    <version>release-tag</version>
+</plugin>
+```
+> 查看[release-tag](https://github.com/yungyu16/spring-boot-starter-proxy/releases)
+## 使用
