@@ -3,7 +3,7 @@
 <p align="center">
     <br/>
     <br/>
-    <b>将不可实例化的Interface动态代理后注册到Spring容器用于IOC,用于便捷的生成Local Stub</b>
+    <b>将不可实例化的Interface动态代理后注册到Spring容器以便IOC,用于便捷的生成Local Stub</b>
     <br/>
     <br/>
 </p>
