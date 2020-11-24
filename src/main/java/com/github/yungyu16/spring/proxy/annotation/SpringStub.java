@@ -1,6 +1,6 @@
-package com.github.yungyu16.spring.stub.annotation;
+package com.github.yungyu16.spring.proxy.annotation;
 
-import com.github.yungyu16.spring.stub.AbstractInvocationDispatcher;
+import com.github.yungyu16.spring.proxy.AbstractInvocationDispatcher;
 import org.springframework.stereotype.Component;
 
 import java.lang.annotation.*;

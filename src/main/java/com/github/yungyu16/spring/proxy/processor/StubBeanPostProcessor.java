@@ -1,8 +1,8 @@
-package com.github.yungyu16.spring.stub.processor;
+package com.github.yungyu16.spring.proxy.processor;
 
-import com.github.yungyu16.spring.stub.AbstractInvocationDispatcher;
-import com.github.yungyu16.spring.stub.StubProxyMark;
-import com.github.yungyu16.spring.stub.annotation.SpringStub;
+import com.github.yungyu16.spring.proxy.AbstractInvocationDispatcher;
+import com.github.yungyu16.spring.proxy.StubProxyMark;
+import com.github.yungyu16.spring.proxy.annotation.SpringStub;
 import lombok.NonNull;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanCreationException;

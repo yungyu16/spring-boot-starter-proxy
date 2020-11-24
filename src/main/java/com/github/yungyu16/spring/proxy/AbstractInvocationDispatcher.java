@@ -1,4 +1,4 @@
-package com.github.yungyu16.spring.stub;
+package com.github.yungyu16.spring.proxy;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;

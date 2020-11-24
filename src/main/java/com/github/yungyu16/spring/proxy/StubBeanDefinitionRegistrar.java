@@ -1,7 +1,7 @@
-package com.github.yungyu16.spring.stub;
+package com.github.yungyu16.spring.proxy;
 
-import com.github.yungyu16.spring.stub.annotation.SpringStubScan;
-import com.github.yungyu16.spring.stub.support.ClassPathStubBeanDefinitionScanner;
+import com.github.yungyu16.spring.proxy.annotation.SpringStubScan;
+import com.github.yungyu16.spring.proxy.support.ClassPathStubBeanDefinitionScanner;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.context.EnvironmentAware;

@@ -1,4 +1,4 @@
-package com.github.yungyu16.spring.stub.service;
+package com.github.yungyu16.spring.proxy.service;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

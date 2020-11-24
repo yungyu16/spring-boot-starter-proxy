@@ -1,7 +1,7 @@
-package com.github.yungyu16.spring.stub.service;
+package com.github.yungyu16.spring.proxy.service;
 
-import com.github.yungyu16.spring.stub.AbstractInvocationDispatcher;
-import com.github.yungyu16.spring.stub.annotation.TestClient;
+import com.github.yungyu16.spring.proxy.AbstractInvocationDispatcher;
+import com.github.yungyu16.spring.proxy.annotation.TestClient;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;

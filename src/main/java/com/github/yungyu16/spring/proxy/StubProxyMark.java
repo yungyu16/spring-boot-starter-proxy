@@ -1,4 +1,4 @@
-package com.github.yungyu16.spring.stub;
+package com.github.yungyu16.spring.proxy;
 
 /**
  * 动态代理标记接口
