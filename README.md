@@ -8,7 +8,7 @@
     <br/>
 </p>
 
-在业务开发中整合中间件或三方依赖时，常借助Client/SDK进行命令式过程式的调用,相关代码散落各处,既不够OOP也不方便追溯和维护。本项目通过对Interface进行便捷透明的代理并注册到Spring容器，方便业务中利用Interface和Annotation作为DSL封装各类简洁易用易维护的本地存根。
+在业务开发中整合中间件或三方依赖时，常借助Client/SDK进行命令式过程式的调用,相关代码散落各处,既不OOP也不方便追溯和维护。本项目通过对Interface进行便捷透明的代理并注册到Spring容器，方便业务中利用Interface和Annotation作为DSL封装各类简洁易用易维护的本地存根。
 
 # 要求
 - Spring-boot 2.x
