@@ -1,5 +1,6 @@
-package com.github.yungyu16.spring.proxy.service;
+package com.github.yungyu16.spring.proxy.example;
 
+import com.github.yungyu16.spring.proxy.example.service.HelloService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

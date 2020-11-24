@@ -1,8 +1,8 @@
-package com.github.yungyu16.spring.proxy.service;
+package com.github.yungyu16.spring.proxy.example.service;
 
 import com.github.yungyu16.spring.proxy.AbstractInvocationDispatcher;
 import com.github.yungyu16.spring.proxy.StubContext;
-import com.github.yungyu16.spring.proxy.annotation.TestClient;
+import com.github.yungyu16.spring.proxy.example.annotation.TestClient;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;

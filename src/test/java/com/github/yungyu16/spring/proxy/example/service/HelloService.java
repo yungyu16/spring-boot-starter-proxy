@@ -1,6 +1,7 @@
-package com.github.yungyu16.spring.proxy.service;
+package com.github.yungyu16.spring.proxy.example.service;
 
-import com.github.yungyu16.spring.proxy.annotation.TestClient;
+
+import com.github.yungyu16.spring.proxy.example.annotation.TestClient;
 
 /**
  * CreatedDate: 2020/11/24
