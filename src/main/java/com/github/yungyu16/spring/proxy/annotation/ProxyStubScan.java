@@ -14,7 +14,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Import(StubBeanDefinitionRegistrar.class)
-public @interface SpringStubScan {
+public @interface ProxyStubScan {
     @AliasFor("basePackages")
     String[] value() default {};
 

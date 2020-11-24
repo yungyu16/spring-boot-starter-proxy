@@ -9,11 +9,11 @@ import java.lang.annotation.*;
  * CreatedDate: 2020/10/27
  * Author: songjialin
  */
-@Target(ElementType.ANNOTATION_TYPE)
+@Target({ElementType.ANNOTATION_TYPE,ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Component
 @Documented
-public @interface SpringStub {
+public @interface ProxyStub {
     @SuppressWarnings("all")
     Class<? extends AbstractInvocationDispatcher> dispatcherType() default AbstractInvocationDispatcher.class;
 

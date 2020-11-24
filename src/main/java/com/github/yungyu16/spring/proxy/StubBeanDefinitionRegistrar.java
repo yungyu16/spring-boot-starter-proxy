@@ -1,6 +1,6 @@
 package com.github.yungyu16.spring.proxy;
 
-import com.github.yungyu16.spring.proxy.annotation.SpringStubScan;
+import com.github.yungyu16.spring.proxy.annotation.ProxyStubScan;
 import com.github.yungyu16.spring.proxy.support.ClassPathStubBeanDefinitionScanner;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
@@ -28,7 +28,7 @@ public class StubBeanDefinitionRegistrar implements ImportBeanDefinitionRegistra
 
     @Override
     public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
-        Map<String, Object> annotationAttributes = importingClassMetadata.getAnnotationAttributes(SpringStubScan.class.getName(), true);
+        Map<String, Object> annotationAttributes = importingClassMetadata.getAnnotationAttributes(ProxyStubScan.class.getName(), true);
         AnnotationAttributes attrs = AnnotationAttributes.fromMap(annotationAttributes);
         if (attrs == null) {
             return;

@@ -11,7 +11,7 @@ import java.lang.annotation.*;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@SpringStub(dispatcherType = InvocationDispatcherImpl.class)
+@ProxyStub(dispatcherType = InvocationDispatcherImpl.class)
 public @interface TestClient {
     String value();
 }

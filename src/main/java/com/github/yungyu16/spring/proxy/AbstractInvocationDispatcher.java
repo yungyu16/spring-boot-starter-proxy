@@ -11,7 +11,7 @@ import java.lang.reflect.ParameterizedType;
 public abstract class AbstractInvocationDispatcher<T extends Annotation> {
 
     @SuppressWarnings("unchecked")
-    public Class<T> getAnnotationClass() {
+    Class<T> getAnnotationType() {
         return (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
     }
 

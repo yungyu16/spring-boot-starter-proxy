@@ -1,6 +1,6 @@
 package com.github.yungyu16.spring.proxy.support;
 
-import com.github.yungyu16.spring.proxy.annotation.SpringStub;
+import com.github.yungyu16.spring.proxy.annotation.ProxyStub;
 import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.context.annotation.ClassPathBeanDefinitionScanner;
@@ -16,7 +16,7 @@ public class ClassPathStubBeanDefinitionScanner extends ClassPathBeanDefinitionS
 
     public ClassPathStubBeanDefinitionScanner(BeanDefinitionRegistry registry, Environment environment) {
         super(registry, false, environment);
-        addIncludeFilter(new AnnotationTypeFilter(SpringStub.class, true, false));
+        addIncludeFilter(new AnnotationTypeFilter(ProxyStub.class, true, false));
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.github.yungyu16.spring.proxy.processor;
+package com.github.yungyu16.spring.proxy;
 
 import com.github.yungyu16.spring.proxy.support.BeanDefinitionRegistryPostProcessorAdapter;
 import com.github.yungyu16.spring.proxy.support.ClassPathStubBeanDefinitionScanner;
