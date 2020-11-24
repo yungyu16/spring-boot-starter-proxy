@@ -39,7 +39,7 @@ public class StubBeanPostProcessor extends InstantiationAwareBeanPostProcessorAd
         Class annotationType = invocationDispatcher.getAnnotationType();
         Annotation annotation = AnnotationUtils.getAnnotation(type, annotationType);
         StubContext stubContext = StubContext.valueOf(type, annotation);
-        return Proxy.newProxyInstance(ClassUtils.getDefaultClassLoader(), new Class[]{type, ProxyStubLabel.class}, StubInvocationHandler.newInstance(stubContext, invocationDispatcher));
+        return Proxy.newProxyInstance(ClassUtils.getDefaultClassLoader(), new Class[]{type, StubLabel.class}, StubInvocationHandler.newInstance(stubContext, invocationDispatcher));
     }
 
     @SuppressWarnings("all")

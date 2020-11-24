@@ -16,7 +16,6 @@ import java.util.function.Function;
  * Author: songjialin
  */
 public abstract class AbstractInvocationDispatcher<ANNOTATION_TYPE extends Annotation, ATTACHMENT> {
-
     //TODO 弱引用？
     private volatile Map<Method, ATTACHMENT> methodAttachments;
 
@@ -24,7 +23,7 @@ public abstract class AbstractInvocationDispatcher<ANNOTATION_TYPE extends Annot
         return Optional.ofNullable(getMethodAttachments().get(key));
     }
 
-    protected final ATTACHMENT getOrCompute(@NonNull Method key, Function<Method, ATTACHMENT> function) {
+    protected final ATTACHMENT getOrCompute(@NonNull Method key, @NonNull Function<Method, ATTACHMENT> function) {
         return getMethodAttachments().computeIfAbsent(key, function);
     }
 
