@@ -15,6 +15,15 @@ import java.lang.annotation.*;
 @Component
 @Documented
 public @interface ProxyStub {
+
+    /**
+     * 指定beanName
+     *
+     * @return
+     */
+    @AliasFor(annotation = Component.class, attribute = "value")
+    String beanName() default "";
+
     /**
      * 指定动态代理调用拦截器BeanType,用于从BeanFactory中按类型获取bean
      *

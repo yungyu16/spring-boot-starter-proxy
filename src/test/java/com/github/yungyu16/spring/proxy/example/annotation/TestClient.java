@@ -2,6 +2,7 @@ package com.github.yungyu16.spring.proxy.example.annotation;
 
 import com.github.yungyu16.spring.proxy.annotation.ProxyStub;
 import com.github.yungyu16.spring.proxy.example.service.InvocationDispatcherImpl1;
+import org.springframework.core.annotation.AliasFor;
 
 import java.lang.annotation.*;
 
@@ -15,4 +16,7 @@ import java.lang.annotation.*;
 @ProxyStub(InvocationDispatcherImpl1.class)
 public @interface TestClient {
     String value();
+
+    @AliasFor(annotation = ProxyStub.class, attribute = "beanName")
+    String beanName() default "";
 }
