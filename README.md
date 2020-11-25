@@ -32,7 +32,7 @@
 # 使用
 本项目有两种使用方式:
 1. **最小化原生配置**,直接使用本项目提供的标记注解,简单快捷。
-1. **语义化定制配置**,定制语义化标记注解,提高可读性并可以传递额外的配置参数(上下文)。
+1. **语义化定制配置**,基于Spring元注解模型定制语义化标记注解,提高可读性并可以传递额外的配置参数(上下文)。
 
 ## 最小化原生配置
 1. 继承 `AbstractInvocationDispatcher<ANNOTATION_TYPE extends Annotation, ATTACHMENT>` 按需重载 `invoke` 方法。
@@ -49,10 +49,68 @@ public class InvocationDispatcherImpl extends AbstractInvocationDispatcher<Proxy
 ```
 2. 定义Interface并添加标记注解指定InvocationDispatcher
 ```java
-@ProxyStub(InvocationDispatcherImpl2.class)
-public interface HelloService2 {
+@ProxyStub(InvocationDispatcherImpl.class)
+public interface HelloService {
     void hello();
+}
+```
+3. IOC注入使用
+```java
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class HelloServiceTest {
+    @Autowired
+    private HelloService helloService;
+
+    @Test
+    public void testHello() {
+        helloService.hello();
+    }
 }
 ```
 
 ## 2、语义化配置(推荐)
+1. 继承 `AbstractInvocationDispatcher<ANNOTATION_TYPE extends Annotation, ATTACHMENT>` 按需重载 `invoke` 方法。
+```java
+@Component
+public class InvocationDispatcherImpl extends AbstractInvocationDispatcher<TestClient, Void> {
+    @Override
+    protected Object invoke(StubContext<TestClient> stubContext, Object proxy, Method method, Object[] args) throws Throwable {
+        System.out.println(stubContext.getAnnotation());
+        System.out.println("InvocationDispatcherImpl");
+        return null;
+    }
+}
+```
+2. 定制语义化注解
+```java
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@ProxyStub(InvocationDispatcherImpl1.class)
+public @interface TestClient {
+    @AliasFor(annotation = ProxyStub.class, attribute = "beanName")
+    String value() default "";
+}
+```
+3. 定义Interface并添加标记注解指定InvocationDispatcher
+```java
+@TestClient("helloService")
+public interface HelloService {
+    void hello();
+}
+```
+4. IOC注入使用
+```java
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class HelloServiceTest {
+    @Autowired
+    private HelloService helloService;
+
+    @Test
+    public void testHello() {
+        helloService.hello();
+    }
+}
+```

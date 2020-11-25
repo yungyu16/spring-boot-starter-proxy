@@ -15,8 +15,6 @@ import java.lang.annotation.*;
 @Documented
 @ProxyStub(InvocationDispatcherImpl1.class)
 public @interface TestClient {
-    String value();
-
     @AliasFor(annotation = ProxyStub.class, attribute = "beanName")
-    String beanName() default "";
+    String value() default "";
 }

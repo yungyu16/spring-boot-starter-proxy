@@ -7,7 +7,7 @@ import com.github.yungyu16.spring.proxy.example.annotation.TestClient;
  * CreatedDate: 2020/11/24
  * Author: songjialin
  */
-@TestClient(value = "这是一个TestClient注解 HelloService1", beanName = "HelloService1ProxyStub")
+@TestClient("helloService")
 public interface HelloService1 {
     void hello();
 }

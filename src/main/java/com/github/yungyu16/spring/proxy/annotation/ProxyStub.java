@@ -15,7 +15,6 @@ import java.lang.annotation.*;
 @Component
 @Documented
 public @interface ProxyStub {
-
     /**
      * 指定beanName
      *
