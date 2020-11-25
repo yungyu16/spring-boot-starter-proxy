@@ -18,11 +18,11 @@
 # 集成
 已发布到中央仓库，GAV坐标如下：
 ```xml
-<plugin>
+<dependency>
     <groupId>com.github.yungyu16.spring</groupId>
     <artifactId>spring-boot-starter-proxy</artifactId>
     <version>1.0.0</version>
-</plugin>
+</dependency>
 ```
 > 查看[release-tag](https://github.com/yungyu16/spring-boot-starter-proxy/releases)
 
