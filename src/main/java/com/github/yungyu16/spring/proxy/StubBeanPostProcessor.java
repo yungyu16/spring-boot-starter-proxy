@@ -1,6 +1,7 @@
 package com.github.yungyu16.spring.proxy;
 
 import com.github.yungyu16.spring.proxy.annotation.ProxyStub;
+import com.github.yungyu16.spring.proxy.codegen.StubLabel;
 import lombok.NonNull;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanCreationException;
