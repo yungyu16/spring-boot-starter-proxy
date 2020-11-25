@@ -14,6 +14,8 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Import(StubBeanDefinitionRegistrar.class)
+//TODO 支持重复注解
+//@Repeatable(ProxyStubScans.class)
 public @interface ProxyStubScan {
     @AliasFor("basePackages")
     String[] value() default {};
@@ -22,4 +24,11 @@ public @interface ProxyStubScan {
     String[] basePackages() default {};
 
     Class<?>[] basePackageClasses() default {};
+
+    /**
+     * 标记注解
+     *
+     * @return
+     */
+    Class<? extends Annotation> markAnnotation() default Annotation.class;
 }

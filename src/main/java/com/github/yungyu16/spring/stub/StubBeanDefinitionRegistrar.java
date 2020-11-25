@@ -1,7 +1,9 @@
 package com.github.yungyu16.spring.stub;
 
+import com.github.yungyu16.spring.stub.annotation.ProxyStub;
 import com.github.yungyu16.spring.stub.annotation.ProxyStubScan;
 import com.github.yungyu16.spring.stub.support.ClassPathStubBeanDefinitionScanner;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.context.EnvironmentAware;
@@ -10,9 +12,11 @@ import org.springframework.context.annotation.ImportBeanDefinitionRegistrar;
 import org.springframework.core.annotation.AnnotationAttributes;
 import org.springframework.core.env.Environment;
 import org.springframework.core.type.AnnotationMetadata;
+import org.springframework.core.type.filter.AnnotationTypeFilter;
 import org.springframework.util.ClassUtils;
 import org.springframework.util.StringUtils;
 
+import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
@@ -26,6 +30,7 @@ public class StubBeanDefinitionRegistrar implements ImportBeanDefinitionRegistra
 
     private Environment environment;
 
+    @SneakyThrows
     @Override
     public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
         Map<String, Object> annotationAttributes = importingClassMetadata.getAnnotationAttributes(ProxyStubScan.class.getName(), true);
@@ -46,6 +51,14 @@ public class StubBeanDefinitionRegistrar implements ImportBeanDefinitionRegistra
             pkgList.add(ClassUtils.getPackageName(importingClassMetadata.getClassName()));
         }
         ClassPathBeanDefinitionScanner scanner = new ClassPathStubBeanDefinitionScanner(registry, environment);
+        String markAnnotation = attrs.getString("markAnnotation");
+        if (!StringUtils.isEmpty(markAnnotation)) {
+            scanner.resetFilters(false);
+            AnnotationTypeFilter proxyStubFilter = new AnnotationTypeFilter(ProxyStub.class, true, false);
+            @SuppressWarnings("unchecked")
+            AnnotationTypeFilter markAnnotationFilter = new AnnotationTypeFilter((Class<? extends Annotation>) ClassUtils.forName(markAnnotation, null), true, false);
+            scanner.addIncludeFilter((metadataReader, metadataReaderFactory) -> proxyStubFilter.match(metadataReader, metadataReaderFactory) && markAnnotationFilter.match(metadataReader, metadataReaderFactory));
+        }
         int bdCnt = scanner.scan(StringUtils.toStringArray(pkgList));
         log.debug("本轮从{}中扫描到{}个SpringStub", pkgList, bdCnt);
     }
