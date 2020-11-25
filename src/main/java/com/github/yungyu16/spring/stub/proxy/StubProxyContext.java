@@ -1,4 +1,4 @@
-package com.github.yungyu16.spring.stub;
+package com.github.yungyu16.spring.stub.proxy;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -14,16 +14,16 @@ import java.lang.annotation.Annotation;
 @Getter
 @EqualsAndHashCode
 @ToString
-public class StubContext<T extends Annotation> {
+public class StubProxyContext<T extends Annotation> {
     private final T annotation;
     private final Class<?> stubType;
 
-    private StubContext(@NonNull Class<?> stubType, T annotation) {
+    private StubProxyContext(@NonNull Class<?> stubType, T annotation) {
         this.annotation = annotation;
         this.stubType = stubType;
     }
 
-    public static <T extends Annotation> StubContext<T> valueOf(Class<?> stubType, T annotation) {
-        return new StubContext<>(stubType, annotation);
+    public static <T extends Annotation> StubProxyContext<T> valueOf(Class<?> stubType, T annotation) {
+        return new StubProxyContext<>(stubType, annotation);
     }
 }

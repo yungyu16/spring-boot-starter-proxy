@@ -1,6 +1,5 @@
 package com.github.yungyu16.spring.stub.proxy;
 
-import com.github.yungyu16.spring.stub.StubContext;
 import lombok.NonNull;
 
 import java.lang.annotation.Annotation;
@@ -52,7 +51,7 @@ public abstract class AbstractInvocationDispatcher<ANNOTATION_TYPE extends Annot
         return (Class<ANNOTATION_TYPE>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
     }
 
-    protected Object invoke(StubContext<ANNOTATION_TYPE> stubContext, Object proxy, Method method, Object[] args) throws Throwable {
+    protected Object invoke(StubProxyContext<ANNOTATION_TYPE> stubProxyContext, Object proxy, Method method, Object[] args) throws Throwable {
         return invoke(proxy, method, args);
     }
 

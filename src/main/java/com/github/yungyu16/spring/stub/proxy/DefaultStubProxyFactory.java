@@ -1,6 +1,5 @@
 package com.github.yungyu16.spring.stub.proxy;
 
-import com.github.yungyu16.spring.stub.StubContext;
 import com.github.yungyu16.spring.stub.annotation.ProxyStub;
 import lombok.NonNull;
 import org.springframework.beans.BeansException;
@@ -29,8 +28,8 @@ public class DefaultStubProxyFactory implements StubProxyFactory, BeanFactoryAwa
         AbstractInvocationDispatcher invocationDispatcher = getInvocationDispatcher(stubInterface, stubAnnotation);
         Class annotationType = invocationDispatcher.getAnnotationType();
         Annotation annotation = AnnotationUtils.findAnnotation(stubInterface, annotationType);
-        StubContext<?> stubContext = StubContext.valueOf(stubInterface, annotation);
-        return (T) Proxy.newProxyInstance(ClassUtils.getDefaultClassLoader(), collectProxyInterface(stubInterface), StubInvocationHandler.newInstance(stubContext, invocationDispatcher));
+        StubProxyContext<?> stubProxyContext = StubProxyContext.valueOf(stubInterface, annotation);
+        return (T) Proxy.newProxyInstance(ClassUtils.getDefaultClassLoader(), collectProxyInterface(stubInterface), StubInvocationHandler.newInstance(stubProxyContext, invocationDispatcher));
     }
 
     @SuppressWarnings("all")
@@ -57,29 +56,29 @@ public class DefaultStubProxyFactory implements StubProxyFactory, BeanFactoryAwa
     @SuppressWarnings("rawtypes")
     static class StubInvocationHandler implements InvocationHandler {
 
-        private final StubContext stubContext;
+        private final StubProxyContext stubProxyContext;
         private final AbstractInvocationDispatcher dispatcher;
 
-        private StubInvocationHandler(StubContext stubContext, AbstractInvocationDispatcher dispatcher) {
-            this.stubContext = stubContext;
+        private StubInvocationHandler(StubProxyContext stubProxyContext, AbstractInvocationDispatcher dispatcher) {
+            this.stubProxyContext = stubProxyContext;
             this.dispatcher = dispatcher;
         }
 
-        public static StubInvocationHandler newInstance(@NonNull StubContext stubContext, @NonNull AbstractInvocationDispatcher dispatcher) {
-            return new StubInvocationHandler(stubContext, dispatcher);
+        public static StubInvocationHandler newInstance(@NonNull StubProxyContext stubProxyContext, @NonNull AbstractInvocationDispatcher dispatcher) {
+            return new StubInvocationHandler(stubProxyContext, dispatcher);
         }
 
         @Override
         @SuppressWarnings("unchecked")
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
             if (ReflectionUtils.isToStringMethod(method)) {
-                return "ProxyStub:" + ClassUtils.classNamesToString(stubContext.getStubType()) + ":" + stubContext.getAnnotation();
+                return "ProxyStub:" + ClassUtils.classNamesToString(stubProxyContext.getStubType()) + ":" + stubProxyContext.getAnnotation();
             }
             if (ReflectionUtils.isEqualsMethod(method)
                     || ReflectionUtils.isHashCodeMethod(method)) {
                 return method.invoke(this, args);
             }
-            return dispatcher.invoke(stubContext, proxy, method, args);
+            return dispatcher.invoke(stubProxyContext, proxy, method, args);
         }
     }
 }
