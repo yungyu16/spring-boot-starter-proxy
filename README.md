@@ -26,13 +26,13 @@
 ```
 > 查看[release-tag](https://github.com/yungyu16/spring-boot-starter-proxy/releases)
 
-本项目借助AutoConfiguration实现了零配置,开箱即用;默认扫描的basePackages为 `@SpringBootApplication` 入口类所在包。     
-如需添加自定义扫描路径,请使用 `@ProxyStubScan` 注解配置,该注解使用方式和 `@ComponentScan` 类似。
+本项目借助AutoConfiguration实现了零配置，开箱即用；默认扫描的basePackages为 `@SpringBootApplication` 入口类所在包。     
+如需添加自定义扫描路径，请使用 `@ProxyStubScan` 注解配置,该注解使用方式和 `@ComponentScan` 类似。
 
 # 使用
-本项目有两种使用方式:
-1. **最小化原生配置**,直接使用本项目提供的标记注解,简单快捷。
-1. **语义化定制配置**,基于Spring元注解模型定制语义化标记注解,提高可读性并可以传递额外的配置参数(上下文)。
+本项目有两种使用方式：
+1. **最小化原生配置**，直接使用本项目提供的标记注解，简单快捷。
+1. **语义化定制配置**，基于Spring元注解模型定制语义化标记注解，提高可读性并可以传递额外的配置参数(上下文),点[这里](./src/test/java/com/github/yungyu16/spring/proxy/example)查看参考示例。
 
 ## 最小化原生配置
 1. 继承 `AbstractInvocationDispatcher<ANNOTATION_TYPE extends Annotation, ATTACHMENT>` 按需重载 `invoke` 方法。
