@@ -44,7 +44,6 @@ public class StubBeanPostProcessor extends InstantiationAwareBeanPostProcessorAd
         return beanFactory.getBean(factoryType);
     }
 
-
     @Override
     public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
         this.beanFactory = beanFactory;
