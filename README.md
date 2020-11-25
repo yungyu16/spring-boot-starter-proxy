@@ -16,7 +16,7 @@
 - Java8
 
 # 集成
-已发布到中央仓库，依赖坐标如下：
+已发布到中央仓库，GAV坐标如下：
 ```xml
 <plugin>
     <groupId>com.github.yungyu16.spring</groupId>
@@ -25,7 +25,32 @@
 </plugin>
 ```
 > 查看[release-tag](https://github.com/yungyu16/spring-boot-starter-proxy/releases)
+
+本项目借助AutoConfiguration实现了零配置,开箱即用;默认扫描的basePackages为 `@SpringBootApplication` 入口类所在包。     
+如需添加自定义扫描路径,请使用 `@ProxyStubScan` 注解配置,该注解使用方式和 `@ComponentScan` 类似。
+
 # 使用
-## 1、最小化配置
+本项目有两种使用方式:
+1. 最小化原生配置;直接使用本项目提供的标记注解,简单快捷。
+1. 语义化定制配置;定制语义化标记注解,提高可读性并可以传递额外的配置参数(上下文)。
+
+## 最小化原生配置
+1. 继承 `AbstractInvocationDispatcher<ANNOTATION_TYPE extends Annotation, ATTACHMENT>` 按需重载 `invoke` 方法。
+```java
+    protected Object invoke(StubContext<ANNOTATION_TYPE> stubContext, Object proxy, Method method, Object[] args) throws Throwable {
+        return invoke(proxy, method, args);
+    }
+
+    protected Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        throw new UnsupportedOperationException();
+    }
+```
+2. 定义Interface并添加标记注解指定InvocationDispatcher
+```java
+@ProxyStub(InvocationDispatcherImpl2.class)
+public interface HelloService2 {
+    void hello();
+}
+```
 
 ## 2、语义化配置(推荐)

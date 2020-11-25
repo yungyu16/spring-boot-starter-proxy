@@ -2,7 +2,7 @@ package com.github.yungyu16.spring.proxy.example.service;
 
 import com.github.yungyu16.spring.proxy.AbstractInvocationDispatcher;
 import com.github.yungyu16.spring.proxy.StubContext;
-import com.github.yungyu16.spring.proxy.example.annotation.TestClient;
+import com.github.yungyu16.spring.proxy.annotation.ProxyStub;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
@@ -12,9 +12,9 @@ import java.lang.reflect.Method;
  * Author: songjialin
  */
 @Component
-public class InvocationDispatcherImpl2 extends AbstractInvocationDispatcher<TestClient, Void> {
+public class InvocationDispatcherImpl2 extends AbstractInvocationDispatcher<ProxyStub, Void> {
     @Override
-    protected Object invoke(StubContext<TestClient> stubContext, Object proxy, Method method, Object[] args) throws Throwable {
+    protected Object invoke(StubContext<ProxyStub> stubContext, Object proxy, Method method, Object[] args) throws Throwable {
         System.out.println(stubContext.getAnnotation());
         System.out.println("InvocationDispatcherImpl2");
         return null;
