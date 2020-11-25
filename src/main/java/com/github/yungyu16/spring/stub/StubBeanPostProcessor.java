@@ -27,7 +27,7 @@ public class StubBeanPostProcessor extends InstantiationAwareBeanPostProcessorAd
             throw new BeanCreationNotAllowedException(name, type.getName() + " 不是Interface");
         }
         StubProxyFactory stubProxyFactory = getStubProxyFactory(proxyStub);
-        return stubProxyFactory.proxy(type, proxyStub);
+        return stubProxyFactory.createProxy(type, proxyStub);
     }
 
     private StubProxyFactory getStubProxyFactory(ProxyStub proxyStub) {

@@ -25,7 +25,7 @@ public class DefaultStubProxyFactory implements StubProxyFactory, BeanFactoryAwa
 
     @SuppressWarnings("rawtypes,unchecked")
     @Override
-    public <T> T proxy(Class<T> stubInterface, ProxyStub stubAnnotation) {
+    public <T> T createProxy(Class<T> stubInterface, ProxyStub stubAnnotation) {
         AbstractInvocationDispatcher invocationDispatcher = getInvocationDispatcher(stubInterface, stubAnnotation);
         Class annotationType = invocationDispatcher.getAnnotationType();
         Annotation annotation = AnnotationUtils.findAnnotation(stubInterface, annotationType);

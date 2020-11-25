@@ -9,8 +9,8 @@ import com.github.yungyu16.spring.stub.annotation.ProxyStub;
 public interface StubProxyFactory {
 
     default Class<?>[] collectProxyInterface(Class<?> interfaceType) {
-        return new Class[]{interfaceType, StubLabel.class};
+        return new Class[]{interfaceType, StubProxyLabel.class};
     }
 
-    <T> T proxy(Class<T> stubInterface, ProxyStub stubAnnotation);
+    <T> T createProxy(Class<T> stubInterface, ProxyStub stubAnnotation);
 }

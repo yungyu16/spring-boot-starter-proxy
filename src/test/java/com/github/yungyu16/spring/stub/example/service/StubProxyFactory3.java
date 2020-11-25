@@ -16,7 +16,7 @@ import java.lang.reflect.Proxy;
 public class StubProxyFactory3 implements StubProxyFactory {
     @SuppressWarnings("unchecked")
     @Override
-    public <T> T proxy(Class<T> stubInterface, ProxyStub stubAnnotation) {
+    public <T> T createProxy(Class<T> stubInterface, ProxyStub stubAnnotation) {
         return (T) Proxy.newProxyInstance(ClassUtils.getDefaultClassLoader(), collectProxyInterface(stubInterface), (proxy, method, args) -> {
             if (ReflectionUtils.isToStringMethod(method)) {
                 return "ProxyStub:" + ClassUtils.classNamesToString(stubInterface) + ":" + stubAnnotation;
