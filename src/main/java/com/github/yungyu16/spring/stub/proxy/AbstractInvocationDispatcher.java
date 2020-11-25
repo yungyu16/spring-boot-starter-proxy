@@ -1,6 +1,9 @@
 package com.github.yungyu16.spring.stub.proxy;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NonNull;
+import lombok.ToString;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
@@ -57,6 +60,23 @@ public abstract class AbstractInvocationDispatcher<ANNOTATION_TYPE extends Annot
 
     protected Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         throw new UnsupportedOperationException();
+    }
+
+    @Getter
+    @EqualsAndHashCode
+    @ToString
+    protected static class StubProxyContext<T extends Annotation> {
+        private final T annotation;
+        private final Class<?> stubType;
+
+        private StubProxyContext(@NonNull Class<?> stubType, T annotation) {
+            this.annotation = annotation;
+            this.stubType = stubType;
+        }
+
+        public static <T extends Annotation> StubProxyContext<T> valueOf(Class<?> stubType, T annotation) {
+            return new StubProxyContext<>(stubType, annotation);
+        }
     }
 }
 

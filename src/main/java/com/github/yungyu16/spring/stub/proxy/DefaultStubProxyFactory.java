@@ -28,22 +28,18 @@ public class DefaultStubProxyFactory implements StubProxyFactory, BeanFactoryAwa
         AbstractInvocationDispatcher invocationDispatcher = getInvocationDispatcher(stubInterface, stubAnnotation);
         Class annotationType = invocationDispatcher.getAnnotationType();
         Annotation annotation = AnnotationUtils.findAnnotation(stubInterface, annotationType);
-        StubProxyContext<?> stubProxyContext = StubProxyContext.valueOf(stubInterface, annotation);
+        AbstractInvocationDispatcher.StubProxyContext<?> stubProxyContext = AbstractInvocationDispatcher.StubProxyContext.valueOf(stubInterface, annotation);
         return (T) Proxy.newProxyInstance(ClassUtils.getDefaultClassLoader(), collectProxyInterface(stubInterface), StubInvocationHandler.newInstance(stubProxyContext, invocationDispatcher));
     }
 
-    @SuppressWarnings("all")
+    @SuppressWarnings("rawtypes")
     private AbstractInvocationDispatcher getInvocationDispatcher(@NonNull Class<?> type, @NonNull ProxyStub proxyStub) {
-        Class beanType = proxyStub.dispatcherType();
-
-        Object handler = null;
-        if (beanType != AbstractInvocationDispatcher.class) {
-            handler = beanFactory.getBean(beanType);
+        Class<? extends AbstractInvocationDispatcher> dispatcherType = proxyStub.dispatcherType();
+        Object handler;
+        if (dispatcherType != AbstractInvocationDispatcher.class) {
+            handler = beanFactory.getBean(dispatcherType);
         } else {
             throw new BeanCreationException(type.getName() + " 没有指定InvocationDispatcher");
-        }
-        if (!(handler instanceof AbstractInvocationDispatcher)) {
-            throw new BeanCreationException(type.getName() + " InvocationDispatcher类型错误");
         }
         return (AbstractInvocationDispatcher) handler;
     }
@@ -56,15 +52,15 @@ public class DefaultStubProxyFactory implements StubProxyFactory, BeanFactoryAwa
     @SuppressWarnings("rawtypes")
     static class StubInvocationHandler implements InvocationHandler {
 
-        private final StubProxyContext stubProxyContext;
+        private final AbstractInvocationDispatcher.StubProxyContext stubProxyContext;
         private final AbstractInvocationDispatcher dispatcher;
 
-        private StubInvocationHandler(StubProxyContext stubProxyContext, AbstractInvocationDispatcher dispatcher) {
+        private StubInvocationHandler(AbstractInvocationDispatcher.StubProxyContext stubProxyContext, AbstractInvocationDispatcher dispatcher) {
             this.stubProxyContext = stubProxyContext;
             this.dispatcher = dispatcher;
         }
 
-        public static StubInvocationHandler newInstance(@NonNull StubProxyContext stubProxyContext, @NonNull AbstractInvocationDispatcher dispatcher) {
+        public static StubInvocationHandler newInstance(@NonNull AbstractInvocationDispatcher.StubProxyContext stubProxyContext, @NonNull AbstractInvocationDispatcher dispatcher) {
             return new StubInvocationHandler(stubProxyContext, dispatcher);
         }
 
