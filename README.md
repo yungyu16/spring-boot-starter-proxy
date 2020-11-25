@@ -87,7 +87,7 @@ public class InvocationDispatcherImpl extends AbstractInvocationDispatcher<TestC
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@ProxyStub(InvocationDispatcherImpl1.class)
+@ProxyStub(InvocationDispatcherImpl.class)
 public @interface TestClient {
     @AliasFor(annotation = ProxyStub.class, attribute = "beanName")
     String value() default "";
