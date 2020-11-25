@@ -12,7 +12,7 @@
 
 # 要求
 - Spring-boot 2.x
-> 本项目依赖 `Spring-Boot 2.0.8` Core API开发测试，且没有传递Spring-Boot依赖，理论上兼容所有Spring-Boot版本。
+> 本项目依赖 `Spring-Boot 2.0.8` 核心基础API开发测试，且没有传递Spring-Boot依赖，理论上兼容所有Spring-Boot版本。
 - Java8
 
 # 集成
