@@ -5,7 +5,7 @@
 
     <groupId>com.github.yungyu16.spring</groupId>
     <artifactId>spring-boot-starter-proxy</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0-SNAPSHOT</version>
     <name>${project.groupId}:${project.artifactId}</name>
     <description>将不可实例化的Interface动态代理后注册到Spring容器以便IOC,用于便捷的生成Local Stub</description>
     <url>https://github.com/yungyu16/version-maven-plugin.git</url>
@@ -91,6 +91,11 @@
     </distributionManagement>
     <build>
         <plugins>
+            <plugin>
+                <groupId>com.github.yungyu16.maven</groupId>
+                <artifactId>version-maven-plugin</artifactId>
+                <version>1.0.1</version>
+            </plugin>
             <!-- Source -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
