@@ -1,7 +1,7 @@
 package com.github.yungyu16.spring.proxy.example.annotation;
 
 import com.github.yungyu16.spring.proxy.annotation.ProxyStub;
-import com.github.yungyu16.spring.proxy.example.service.InvocationDispatcherImpl;
+import com.github.yungyu16.spring.proxy.example.service.InvocationDispatcherImpl1;
 
 import java.lang.annotation.*;
 
@@ -12,7 +12,7 @@ import java.lang.annotation.*;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@ProxyStub(dispatcherType = InvocationDispatcherImpl.class)
+@ProxyStub(InvocationDispatcherImpl1.class)
 public @interface TestClient {
     String value();
 }

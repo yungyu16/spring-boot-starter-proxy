@@ -3,6 +3,7 @@ package com.github.yungyu16.spring.proxy.support;
 import com.github.yungyu16.spring.proxy.annotation.ProxyStub;
 import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
+import org.springframework.beans.factory.support.DefaultBeanNameGenerator;
 import org.springframework.context.annotation.ClassPathBeanDefinitionScanner;
 import org.springframework.core.env.Environment;
 import org.springframework.core.type.AnnotationMetadata;
@@ -17,6 +18,7 @@ public class ClassPathStubBeanDefinitionScanner extends ClassPathBeanDefinitionS
     public ClassPathStubBeanDefinitionScanner(BeanDefinitionRegistry registry, Environment environment) {
         super(registry, false, environment);
         addIncludeFilter(new AnnotationTypeFilter(ProxyStub.class, true, false));
+        setBeanNameGenerator(new DefaultBeanNameGenerator());
     }
 
     @Override

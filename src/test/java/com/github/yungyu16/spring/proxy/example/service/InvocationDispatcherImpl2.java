@@ -12,12 +12,11 @@ import java.lang.reflect.Method;
  * Author: songjialin
  */
 @Component
-public class InvocationDispatcherImpl extends AbstractInvocationDispatcher<TestClient, Void> {
+public class InvocationDispatcherImpl2 extends AbstractInvocationDispatcher<TestClient, Void> {
     @Override
     protected Object invoke(StubContext<TestClient> stubContext, Object proxy, Method method, Object[] args) throws Throwable {
         System.out.println(stubContext.getAnnotation());
-        System.out.println("hahahahhhhhhhhhhhhhhhhhhhhhhhhhh");
-        System.out.println("hahahahhhhhhhhhhhhhhhhhhhhhhhhhh");
+        System.out.println("InvocationDispatcherImpl2");
         return null;
     }
 }

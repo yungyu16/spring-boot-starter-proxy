@@ -8,10 +8,10 @@ import org.springframework.beans.factory.BeanCreationNotAllowedException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessorAdapter;
+import org.springframework.core.annotation.AnnotatedElementUtils;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.util.ClassUtils;
 import org.springframework.util.ReflectionUtils;
-import org.springframework.util.StringUtils;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationHandler;
@@ -28,7 +28,7 @@ public class StubBeanPostProcessor extends InstantiationAwareBeanPostProcessorAd
     @Override
     @SuppressWarnings("all")
     public Object postProcessBeforeInstantiation(Class<?> type, String name) throws BeansException {
-        ProxyStub proxyStub = AnnotationUtils.getAnnotation(type, ProxyStub.class);
+        ProxyStub proxyStub = AnnotatedElementUtils.getMergedAnnotation(type, ProxyStub.class);
         if (proxyStub == null) {
             return null;
         }
@@ -37,24 +37,19 @@ public class StubBeanPostProcessor extends InstantiationAwareBeanPostProcessorAd
         }
         AbstractInvocationDispatcher invocationDispatcher = getInvocationDispatcher(type, proxyStub);
         Class annotationType = invocationDispatcher.getAnnotationType();
-        Annotation annotation = AnnotationUtils.getAnnotation(type, annotationType);
+        Annotation annotation = AnnotationUtils.findAnnotation(type, annotationType);
         StubContext stubContext = StubContext.valueOf(type, annotation);
         return Proxy.newProxyInstance(ClassUtils.getDefaultClassLoader(), new Class[]{type, StubLabel.class}, StubInvocationHandler.newInstance(stubContext, invocationDispatcher));
     }
 
     @SuppressWarnings("all")
     private AbstractInvocationDispatcher getInvocationDispatcher(@NonNull Class<?> type, @NonNull ProxyStub proxyStub) {
-        String beanName = proxyStub.dispatcherBean();
         Class beanType = proxyStub.dispatcherType();
 
         Object handler = null;
-        if (!StringUtils.isEmpty(beanName)) {
-            handler = beanFactory.getBean(beanName);
-        }
-        if (handler == null && beanType != AbstractInvocationDispatcher.class) {
+        if (beanType != AbstractInvocationDispatcher.class) {
             handler = beanFactory.getBean(beanType);
-        }
-        if (handler == null) {
+        } else {
             throw new BeanCreationException(type.getName() + " 没有指定InvocationDispatcher");
         }
         if (!(handler instanceof AbstractInvocationDispatcher)) {
