@@ -1,6 +1,7 @@
 package com.github.yungyu16.spring.stub.annotation;
 
 import com.github.yungyu16.spring.stub.proxy.AbstractInvocationDispatcher;
+import com.github.yungyu16.spring.stub.proxy.DefaultStubProxyFactory;
 import com.github.yungyu16.spring.stub.proxy.StubProxyFactory;
 import org.springframework.core.annotation.AliasFor;
 import org.springframework.stereotype.Component;
@@ -26,11 +27,11 @@ public @interface ProxyStub {
 
     /**
      * 指定动态代理工厂,用于定制动态代理方案比如Cglib、ByteBuddy等
-     * 优先使用此配置
+     * 默认使用基于JdkDynamicProxy代理并使用AbstractInvocationDispatcher拦截方法调用
      *
      * @return
      */
-    Class<? extends StubProxyFactory> factoryType() default StubProxyFactory.class;
+    Class<? extends StubProxyFactory> factoryType() default DefaultStubProxyFactory.class;
 
     /**
      * 指定JdkDynamicProxy调用拦截器BeanType,用于从BeanFactory中按类型获取bean

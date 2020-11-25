@@ -1,7 +1,6 @@
 package com.github.yungyu16.spring.stub;
 
 import com.github.yungyu16.spring.stub.annotation.ProxyStub;
-import com.github.yungyu16.spring.stub.proxy.DefaultStubProxyFactory;
 import com.github.yungyu16.spring.stub.proxy.StubProxyFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanCreationNotAllowedException;
@@ -16,11 +15,6 @@ import org.springframework.core.annotation.AnnotatedElementUtils;
  */
 public class StubBeanPostProcessor extends InstantiationAwareBeanPostProcessorAdapter implements BeanFactoryAware {
     private BeanFactory beanFactory;
-    private final DefaultStubProxyFactory defaultStubProxyFactory;
-
-    public StubBeanPostProcessor(DefaultStubProxyFactory defaultStubProxyFactory) {
-        this.defaultStubProxyFactory = defaultStubProxyFactory;
-    }
 
     @Override
     @SuppressWarnings("all")
@@ -38,9 +32,6 @@ public class StubBeanPostProcessor extends InstantiationAwareBeanPostProcessorAd
 
     private StubProxyFactory getStubProxyFactory(ProxyStub proxyStub) {
         Class<? extends StubProxyFactory> factoryType = proxyStub.factoryType();
-        if (factoryType == StubProxyFactory.class) {
-            return defaultStubProxyFactory;
-        }
         return beanFactory.getBean(factoryType);
     }
 

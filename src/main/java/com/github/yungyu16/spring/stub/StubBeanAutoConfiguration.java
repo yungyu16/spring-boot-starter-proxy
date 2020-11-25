@@ -16,8 +16,8 @@ public class StubBeanAutoConfiguration {
     }
 
     @Bean
-    public StubBeanPostProcessor stubBeanPostProcessor(DefaultStubProxyFactory defaultStubProxyFactory) {
-        return new StubBeanPostProcessor(defaultStubProxyFactory);
+    public StubBeanPostProcessor stubBeanPostProcessor() {
+        return new StubBeanPostProcessor();
     }
 
     @Bean
