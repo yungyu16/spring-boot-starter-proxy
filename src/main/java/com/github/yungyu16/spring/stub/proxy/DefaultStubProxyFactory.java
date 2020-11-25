@@ -20,6 +20,7 @@ import java.lang.reflect.Proxy;
  * Author: songjialin
  */
 public class DefaultStubProxyFactory implements StubProxyFactory, BeanFactoryAware {
+
     private BeanFactory beanFactory;
 
     @SuppressWarnings("rawtypes,unchecked")
