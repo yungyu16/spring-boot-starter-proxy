@@ -1,7 +1,7 @@
-package com.github.yungyu16.spring.proxy;
+package com.github.yungyu16.spring.stub;
 
-import com.github.yungyu16.spring.proxy.support.BeanDefinitionRegistryPostProcessorAdapter;
-import com.github.yungyu16.spring.proxy.support.ClassPathStubBeanDefinitionScanner;
+import com.github.yungyu16.spring.stub.support.BeanDefinitionRegistryPostProcessorAdapter;
+import com.github.yungyu16.spring.stub.support.ClassPathStubBeanDefinitionScanner;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;

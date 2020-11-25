@@ -40,8 +40,8 @@
 @Component
 public class InvocationDispatcherImpl extends AbstractInvocationDispatcher<ProxyStub, Void> {
     @Override
-    protected Object invoke(StubContext<ProxyStub> stubContext, Object proxy, Method method, Object[] args) throws Throwable {
-        System.out.println(stubContext.getAnnotation());
+    protected Object invoke(StubContext<ProxyStub> stubProxyContext, Object proxy, Method method, Object[] args) throws Throwable {
+        System.out.println(stubProxyContext.getAnnotation());
         System.out.println("InvocationDispatcherImpl");
         return null;
     }
@@ -75,8 +75,8 @@ public class HelloServiceTest {
 @Component
 public class InvocationDispatcherImpl extends AbstractInvocationDispatcher<TestClient, Void> {
     @Override
-    protected Object invoke(StubContext<TestClient> stubContext, Object proxy, Method method, Object[] args) throws Throwable {
-        System.out.println(stubContext.getAnnotation());
+    protected Object invoke(StubContext<TestClient> stubProxyContext, Object proxy, Method method, Object[] args) throws Throwable {
+        System.out.println(stubProxyContext.getAnnotation());
         System.out.println("InvocationDispatcherImpl");
         return null;
     }

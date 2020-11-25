@@ -1,5 +1,6 @@
-package com.github.yungyu16.spring.proxy;
+package com.github.yungyu16.spring.stub;
 
+import com.github.yungyu16.spring.stub.proxy.DefaultStubProxyFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -17,5 +18,10 @@ public class StubBeanAutoConfiguration {
     @Bean
     public StubBeanPostProcessor stubBeanPostProcessor() {
         return new StubBeanPostProcessor();
+    }
+
+    @Bean
+    public DefaultStubProxyFactory defaultStubProxyFactory() {
+        return new DefaultStubProxyFactory();
     }
 }

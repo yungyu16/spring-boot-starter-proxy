@@ -1,6 +1,6 @@
-package com.github.yungyu16.spring.proxy.example;
+package com.github.yungyu16.spring.stub.example;
 
-import com.github.yungyu16.spring.proxy.annotation.ProxyStubScan;
+import com.github.yungyu16.spring.stub.annotation.ProxyStubScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

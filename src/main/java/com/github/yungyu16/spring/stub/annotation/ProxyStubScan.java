@@ -1,6 +1,6 @@
-package com.github.yungyu16.spring.proxy.annotation;
+package com.github.yungyu16.spring.stub.annotation;
 
-import com.github.yungyu16.spring.proxy.StubBeanDefinitionRegistrar;
+import com.github.yungyu16.spring.stub.StubBeanDefinitionRegistrar;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.annotation.AliasFor;
 
