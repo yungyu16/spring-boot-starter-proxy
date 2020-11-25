@@ -57,6 +57,9 @@ public class StubBeanPostProcessor extends InstantiationAwareBeanPostProcessorAd
         if (handler == null) {
             throw new BeanCreationException(type.getName() + " 没有指定InvocationDispatcher");
         }
+        if (!(handler instanceof AbstractInvocationDispatcher)) {
+            throw new BeanCreationException(type.getName() + " InvocationDispatcher类型错误");
+        }
         return (AbstractInvocationDispatcher) handler;
     }
 

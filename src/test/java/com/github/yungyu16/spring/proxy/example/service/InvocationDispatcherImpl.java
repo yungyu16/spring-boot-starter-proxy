@@ -15,7 +15,7 @@ import java.lang.reflect.Method;
 public class InvocationDispatcherImpl extends AbstractInvocationDispatcher<TestClient, Void> {
     @Override
     protected Object invoke(StubContext<TestClient> stubContext, Object proxy, Method method, Object[] args) throws Throwable {
-        System.out.println(stubContext);
+        System.out.println(stubContext.getAnnotation());
         System.out.println("hahahahhhhhhhhhhhhhhhhhhhhhhhhhh");
         System.out.println("hahahahhhhhhhhhhhhhhhhhhhhhhhhhh");
         return null;

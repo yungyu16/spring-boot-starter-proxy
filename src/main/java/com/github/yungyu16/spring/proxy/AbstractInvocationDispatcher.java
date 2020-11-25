@@ -19,11 +19,19 @@ public abstract class AbstractInvocationDispatcher<ANNOTATION_TYPE extends Annot
     //TODO 弱引用？
     private volatile Map<Method, ATTACHMENT> methodAttachments;
 
-    protected final Optional<ATTACHMENT> get(@NonNull Method key) {
+    protected final ATTACHMENT getAttachmentOrNull(@NonNull Method key) {
+        return getAttachment(key).orElse(null);
+    }
+
+    protected final ATTACHMENT getAttachmentOrErr(@NonNull Method key) {
+        return getAttachment(key).orElseThrow(NullPointerException::new);
+    }
+
+    protected final Optional<ATTACHMENT> getAttachment(@NonNull Method key) {
         return Optional.ofNullable(getMethodAttachments().get(key));
     }
 
-    protected final ATTACHMENT getOrCompute(@NonNull Method key, @NonNull Function<Method, ATTACHMENT> function) {
+    protected final ATTACHMENT getAttachmentOrCompute(@NonNull Method key, @NonNull Function<Method, ATTACHMENT> function) {
         return getMethodAttachments().computeIfAbsent(key, function);
     }
 
