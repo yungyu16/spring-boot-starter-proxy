@@ -37,13 +37,15 @@
 ## 最小化原生配置
 1. 继承 `AbstractInvocationDispatcher<ANNOTATION_TYPE extends Annotation, ATTACHMENT>` 按需重载 `invoke` 方法。
 ```java
-    protected Object invoke(StubContext<ANNOTATION_TYPE> stubContext, Object proxy, Method method, Object[] args) throws Throwable {
-        return invoke(proxy, method, args);
+@Component
+public class InvocationDispatcherImpl extends AbstractInvocationDispatcher<ProxyStub, Void> {
+    @Override
+    protected Object invoke(StubContext<ProxyStub> stubContext, Object proxy, Method method, Object[] args) throws Throwable {
+        System.out.println(stubContext.getAnnotation());
+        System.out.println("InvocationDispatcherImpl");
+        return null;
     }
-
-    protected Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        throw new UnsupportedOperationException();
-    }
+}
 ```
 2. 定义Interface并添加标记注解指定InvocationDispatcher
 ```java
