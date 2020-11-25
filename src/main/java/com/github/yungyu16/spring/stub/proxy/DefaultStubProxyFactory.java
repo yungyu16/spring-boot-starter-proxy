@@ -1,15 +1,12 @@
-package com.github.yungyu16.spring.proxy;
+package com.github.yungyu16.spring.stub.proxy;
 
-import com.github.yungyu16.spring.proxy.annotation.ProxyStub;
-import com.github.yungyu16.spring.proxy.codegen.StubLabel;
+import com.github.yungyu16.spring.stub.StubContext;
+import com.github.yungyu16.spring.stub.annotation.ProxyStub;
 import lombok.NonNull;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanCreationException;
-import org.springframework.beans.factory.BeanCreationNotAllowedException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
-import org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessorAdapter;
-import org.springframework.core.annotation.AnnotatedElementUtils;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.util.ClassUtils;
 import org.springframework.util.ReflectionUtils;
@@ -20,27 +17,20 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 /**
- * CreatedDate: 2020/11/24
+ * CreatedDate: 2020/11/25
  * Author: songjialin
  */
-public class StubBeanPostProcessor extends InstantiationAwareBeanPostProcessorAdapter implements BeanFactoryAware {
+public class DefaultStubProxyFactory implements StubProxyFactory, BeanFactoryAware {
     private BeanFactory beanFactory;
 
+    @SuppressWarnings("rawtypes,unchecked")
     @Override
-    @SuppressWarnings("all")
-    public Object postProcessBeforeInstantiation(Class<?> type, String name) throws BeansException {
-        ProxyStub proxyStub = AnnotatedElementUtils.getMergedAnnotation(type, ProxyStub.class);
-        if (proxyStub == null) {
-            return null;
-        }
-        if (!type.isInterface()) {
-            throw new BeanCreationNotAllowedException(name, type.getName() + " 不是Interface");
-        }
-        AbstractInvocationDispatcher invocationDispatcher = getInvocationDispatcher(type, proxyStub);
+    public <T> T proxy(Class<T> stubInterface, ProxyStub stubAnnotation) {
+        AbstractInvocationDispatcher invocationDispatcher = getInvocationDispatcher(stubInterface, stubAnnotation);
         Class annotationType = invocationDispatcher.getAnnotationType();
-        Annotation annotation = AnnotationUtils.findAnnotation(type, annotationType);
-        StubContext stubContext = StubContext.valueOf(type, annotation);
-        return Proxy.newProxyInstance(ClassUtils.getDefaultClassLoader(), new Class[]{type, StubLabel.class}, StubInvocationHandler.newInstance(stubContext, invocationDispatcher));
+        Annotation annotation = AnnotationUtils.findAnnotation(stubInterface, annotationType);
+        StubContext<?> stubContext = StubContext.valueOf(stubInterface, annotation);
+        return (T) Proxy.newProxyInstance(ClassUtils.getDefaultClassLoader(), collectProxyInterface(stubInterface), StubInvocationHandler.newInstance(stubContext, invocationDispatcher));
     }
 
     @SuppressWarnings("all")
@@ -67,16 +57,16 @@ public class StubBeanPostProcessor extends InstantiationAwareBeanPostProcessorAd
     @SuppressWarnings("rawtypes")
     static class StubInvocationHandler implements InvocationHandler {
 
-        public static StubInvocationHandler newInstance(@NonNull StubContext stubContext, @NonNull AbstractInvocationDispatcher dispatcher) {
-            return new StubInvocationHandler(stubContext, dispatcher);
-        }
-
         private final StubContext stubContext;
         private final AbstractInvocationDispatcher dispatcher;
 
         private StubInvocationHandler(StubContext stubContext, AbstractInvocationDispatcher dispatcher) {
             this.stubContext = stubContext;
             this.dispatcher = dispatcher;
+        }
+
+        public static StubInvocationHandler newInstance(@NonNull StubContext stubContext, @NonNull AbstractInvocationDispatcher dispatcher) {
+            return new StubInvocationHandler(stubContext, dispatcher);
         }
 
         @Override

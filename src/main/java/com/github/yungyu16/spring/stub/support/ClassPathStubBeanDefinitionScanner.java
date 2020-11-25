@@ -1,6 +1,6 @@
-package com.github.yungyu16.spring.proxy.support;
+package com.github.yungyu16.spring.stub.support;
 
-import com.github.yungyu16.spring.proxy.annotation.ProxyStub;
+import com.github.yungyu16.spring.stub.annotation.ProxyStub;
 import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.context.annotation.ClassPathBeanDefinitionScanner;

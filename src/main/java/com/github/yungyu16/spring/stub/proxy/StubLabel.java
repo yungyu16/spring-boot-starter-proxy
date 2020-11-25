@@ -1,4 +1,4 @@
-package com.github.yungyu16.spring.proxy.codegen;
+package com.github.yungyu16.spring.stub.proxy;
 
 /**
  * 动态代理标记接口

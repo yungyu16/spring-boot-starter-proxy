@@ -1,7 +1,7 @@
-package com.github.yungyu16.spring.proxy.example.annotation;
+package com.github.yungyu16.spring.stub.example.annotation;
 
-import com.github.yungyu16.spring.proxy.annotation.ProxyStub;
-import com.github.yungyu16.spring.proxy.example.service.InvocationDispatcherImpl1;
+import com.github.yungyu16.spring.stub.annotation.ProxyStub;
+import com.github.yungyu16.spring.stub.example.service.InvocationDispatcherImpl1;
 import org.springframework.core.annotation.AliasFor;
 
 import java.lang.annotation.*;

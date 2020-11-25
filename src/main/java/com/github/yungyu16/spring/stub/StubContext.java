@@ -1,4 +1,4 @@
-package com.github.yungyu16.spring.proxy;
+package com.github.yungyu16.spring.stub;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -26,5 +26,4 @@ public class StubContext<T extends Annotation> {
     public static <T extends Annotation> StubContext<T> valueOf(Class<?> stubType, T annotation) {
         return new StubContext<>(stubType, annotation);
     }
-
 }

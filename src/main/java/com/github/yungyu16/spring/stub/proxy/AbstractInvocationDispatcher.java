@@ -1,5 +1,6 @@
-package com.github.yungyu16.spring.proxy;
+package com.github.yungyu16.spring.stub.proxy;
 
+import com.github.yungyu16.spring.stub.StubContext;
 import lombok.NonNull;
 
 import java.lang.annotation.Annotation;

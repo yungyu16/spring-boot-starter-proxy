@@ -1,7 +1,7 @@
-package com.github.yungyu16.spring.proxy.example.service;
+package com.github.yungyu16.spring.stub.example.service;
 
 
-import com.github.yungyu16.spring.proxy.annotation.ProxyStub;
+import com.github.yungyu16.spring.stub.annotation.ProxyStub;
 
 /**
  * CreatedDate: 2020/11/24
@@ -9,5 +9,5 @@ import com.github.yungyu16.spring.proxy.annotation.ProxyStub;
  */
 @ProxyStub(InvocationDispatcherImpl2.class)
 public interface HelloService2 {
-    void hello();
+    String hello();
 }
