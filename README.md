@@ -24,7 +24,7 @@
     <version>release-tag</version>
 </dependency>
 ```
-> 查看[release-tag](https://github.com/yungyu16/spring-boot-starter-proxy/releases)
+> 查看[release-tag](https://github.com/yungyu16/spring-boot-starter-proxy/releases)      
 > 在[maven](https://search.maven.org/artifact/com.github.yungyu16.spring/spring-boot-starter-proxy)中查看
 
 本项目借助AutoConfiguration实现了零配置，开箱即用；默认扫描的basePackages为 `@SpringBootApplication` 入口类所在包。     
