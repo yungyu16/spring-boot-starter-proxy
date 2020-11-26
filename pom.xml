@@ -41,6 +41,10 @@
         <developerConnection>scm:git:https://github.com/yungyu16/version-maven-plugin.git</developerConnection>
         <url>https://github.com/yungyu16/version-maven-plugin.git</url>
     </scm>
+    <issueManagement>
+        <system>Github Issues</system>
+        <url>https://github.com/yungyu16/spring-boot-starter-proxy/issues</url>
+    </issueManagement>
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -52,10 +56,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-    <issueManagement>
-        <system>Github Issues</system>
-        <url>https://github.com/yungyu16/spring-boot-starter-proxy/issues</url>
-    </issueManagement>
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
