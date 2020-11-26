@@ -30,9 +30,15 @@
 如需添加自定义扫描路径，请使用 `@ProxyStubScan` 注解配置，该注解使用方式和 `@ComponentScan` 类似。
 
 # 使用
-本项目有两种使用方式：
+两种使用方式：
 1. **最小化原生配置**，直接使用本项目提供的标记注解，简单快捷。
 1. **语义化定制配置**，基于Spring元注解模型定制语义化标记注解，提高可读性并可以传递额外上下文，[查看](./src/test/java/com/github/yungyu16/spring/proxy/example)示例。
+
+两种代理方式：
+1. 指定方法拦截器(`com.github.yungyu16.spring.stub.annotation.ProxyStub#dispatcherType`)    
+使用默认的代理工厂生成代理类，拦截方法调用并回调指定的InvocationDispatcher
+2. 指定代理工厂(`com.github.yungyu16.spring.stub.annotation.ProxyStub#factoryType`)    
+使用指定的代理工厂生成代理类，可自行选择动态代理方案，方便进行更底层的定制。可参考我的[这个项目](https://github.com/yungyu16/spring-boot-starter-retrofit2)
 
 ## 最小化原生配置
 1. 继承 `AbstractInvocationDispatcher<ANNOTATION_TYPE extends Annotation, ATTACHMENT>` 按需重载 `invoke` 方法。
