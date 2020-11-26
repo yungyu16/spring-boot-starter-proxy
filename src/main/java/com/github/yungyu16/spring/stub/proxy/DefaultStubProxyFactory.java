@@ -28,7 +28,7 @@ public class DefaultStubProxyFactory implements StubProxyFactory, BeanFactoryAwa
     public <T> T createProxy(Class<T> stubInterface, ProxyStub stubAnnotation) {
         AbstractInvocationDispatcher invocationDispatcher = getInvocationDispatcher(stubInterface, stubAnnotation);
         Class annotationType = invocationDispatcher.getAnnotationType();
-        Annotation annotation = AnnotationUtils.findAnnotation(stubInterface, annotationType);
+        Annotation annotation = AnnotationUtils.getAnnotation(stubInterface, annotationType);
         AbstractInvocationDispatcher.StubProxyContext<?> stubProxyContext = AbstractInvocationDispatcher.StubProxyContext.valueOf(stubInterface, annotation);
         return (T) Proxy.newProxyInstance(ClassUtils.getDefaultClassLoader(), collectProxyInterface(stubInterface), StubInvocationHandler.newInstance(stubProxyContext, invocationDispatcher));
     }

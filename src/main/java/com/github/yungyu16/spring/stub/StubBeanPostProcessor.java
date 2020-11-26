@@ -7,7 +7,7 @@ import org.springframework.beans.factory.BeanCreationNotAllowedException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.beans.factory.config.InstantiationAwareBeanPostProcessorAdapter;
-import org.springframework.core.annotation.AnnotatedElementUtils;
+import org.springframework.core.annotation.AnnotationUtils;
 
 /**
  * CreatedDate: 2020/11/24
@@ -19,7 +19,7 @@ public class StubBeanPostProcessor extends InstantiationAwareBeanPostProcessorAd
     @Override
     @SuppressWarnings("all")
     public Object postProcessBeforeInstantiation(Class<?> type, String name) throws BeansException {
-        ProxyStub proxyStub = AnnotatedElementUtils.getMergedAnnotation(type, ProxyStub.class);
+        ProxyStub proxyStub = AnnotationUtils.getAnnotation(type, ProxyStub.class);
         if (proxyStub == null) {
             return null;
         }
