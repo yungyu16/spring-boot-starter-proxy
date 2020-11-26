@@ -21,7 +21,7 @@
 <dependency>
     <groupId>com.github.yungyu16.spring</groupId>
     <artifactId>spring-boot-starter-proxy</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.1</version>
 </dependency>
 ```
 > 查看[release-tag](https://github.com/yungyu16/spring-boot-starter-proxy/releases)
