@@ -25,8 +25,6 @@ public @interface ProxyStubScan {
 
     /**
      * 标记注解
-     *
-     * @return
      */
     Class<? extends Annotation> markAnnotation() default Annotation.class;
 }
