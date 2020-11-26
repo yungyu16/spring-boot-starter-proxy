@@ -33,7 +33,7 @@
 # 使用
 两种使用方式：
 1. **最小化原生配置**，直接使用本项目提供的标记注解，简单快捷。
-1. **语义化定制配置**，基于Spring元注解模型定制语义化标记注解，提高可读性并可以传递额外上下文，[查看](./src/test/java/com/github/yungyu16/spring/proxy/example)示例。
+1. **语义化定制配置**，基于Spring元注解模型定制语义化标记注解，提高可读性并可以传递额外上下文，[查看](src/test/java/com/github/yungyu16/spring/stub/example)示例。
 
 两种代理方式：
 1. **指定方法拦截器**(`com.github.yungyu16.spring.stub.annotation.ProxyStub#dispatcherType`)    
