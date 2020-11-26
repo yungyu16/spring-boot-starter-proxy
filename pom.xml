@@ -37,9 +37,9 @@
         </developer>
     </developers>
     <scm>
-        <connection>scm:git:https://github.com/yungyu16/version-maven-plugin.git</connection>
-        <developerConnection>scm:git:https://github.com/yungyu16/version-maven-plugin.git</developerConnection>
-        <url>https://github.com/yungyu16/version-maven-plugin.git</url>
+        <connection>scm:git:https://github.com/yungyu16/spring-boot-starter-proxy</connection>
+        <developerConnection>scm:git:https://github.com/yungyu16/spring-boot-starter-proxy</developerConnection>
+        <url>https://github.com/yungyu16/spring-boot-starter-proxy</url>
     </scm>
     <issueManagement>
         <system>Github Issues</system>
