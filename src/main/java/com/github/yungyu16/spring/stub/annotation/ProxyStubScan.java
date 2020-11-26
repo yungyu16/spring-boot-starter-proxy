@@ -24,7 +24,7 @@ public @interface ProxyStubScan {
     Class<?>[] basePackageClasses() default {};
 
     /**
-     * 标记注解
+     * 标记注解 用于限定扫描的接口
      */
     Class<? extends Annotation> markAnnotation() default Annotation.class;
 }
