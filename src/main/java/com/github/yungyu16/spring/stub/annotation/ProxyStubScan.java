@@ -10,7 +10,7 @@ import java.lang.annotation.*;
  * CreatedDate: 2020/11/24
  * Author: songjialin
  */
-@Target(ElementType.TYPE)
+@Target({ElementType.TYPE, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Import(StubBeanDefinitionRegistrar.class)
